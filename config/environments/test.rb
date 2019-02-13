@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -43,4 +45,14 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+
+  # loading enviroment variable if exists from /config/local_env file
+  config.before_configuration do
+    env_file = File.join(Rails.root, 'config', 'local_env.yml')
+    if File.exist?(env_file)
+      YAML.safe_load(File.open(env_file)).each do |key, value|
+        ENV[key.to_s] = value
+      end
+    end
+  end
 end
