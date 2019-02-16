@@ -2,7 +2,7 @@
 
 # apicup plicy
 class TripPolicy < ApplicationPolicy
-  def show_nav?
+  def general?
     user.driver?
   end
 end

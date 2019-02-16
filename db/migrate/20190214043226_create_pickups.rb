@@ -3,10 +3,10 @@
 class CreatePickups < ActiveRecord::Migration[5.2]
   def change
     create_table :pickups do |t|
-      t.references :passenger
-      t.references :pickup_source
-      t.references :pickup_destination
-      t.datetime :departure_time
+      t.references :passenger, null: false
+      t.references :pickup_source, null: false
+      t.references :pickup_destination, null: false
+      t.datetime :departure_time, null: false
 
       t.timestamps
     end

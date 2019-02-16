@@ -2,6 +2,7 @@
 
 class PickupsController < ApplicationController
   before_action :set_pickup, only: %i[show edit update destroy]
+  before_action :check_authority
 
   # GET /pickups
   # GET /pickups.json
@@ -63,6 +64,10 @@ class PickupsController < ApplicationController
 
   private
 
+  def check_authority
+    authorize Pickup, :general?
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_pickup
     @pickup = Pickup.find(params[:id])
@@ -70,6 +75,8 @@ class PickupsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def pickup_params
-    params.require(:pickup).permit(:driver_id, :source_id, :destination_id, :departure_time)
+    params.require(:pickup).permit(
+      :passenger_id, :pickup_source_id, :pickup_destination_id, :departure_time
+    )
   end
 end

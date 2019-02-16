@@ -1,6 +1,6 @@
-= form_with(model: trip, local: true) do |form|
+= form_with model: trip, local: true  do |form|
   - if trip.errors.any?
-    #error_explanation
+    #error_explanation.flash-container.alert.alert-danger
       %h2
         = pluralize(trip.errors.count, "error")
         prohibited this trip from being saved:
@@ -9,19 +9,18 @@
           %li= message
   .field
     = form.label :driver_id
-    = form.text_field :driver_id
+    = form.select :driver_id, User.driver.collect { |p| [p.name, p.id] }, {} , class: 'form-control'
   .field
     = form.label :departure_time
     = form.datetime_select :departure_time
   .field
     = form.label :number_of_seats
-    = form.number_field :number_of_seats
-  = form.fields_for :trip_source_and_destinations do |t_fields|
-    Place : #{t_fields.text_field :place_id}
-    Trip : #{t_fields.text_field :trip_id}
-  = form.fields_for :trip_source_and_destinations do |t_fields|
-    Place : #{t_fields.text_field :place_id}
-    Trip : #{t_fields.text_field :trip_id}
-
+    = form.number_field :number_of_seats, min: 3, step: 1, class: 'form-control'
+  .field
+    = form.label :trip_source_id
+    = form.select :trip_source_id, Place.all.collect { |p| [p.name, p.id] }, {} , class: 'form-control'
+  .field
+    = form.label :trip_destination_id
+    = form.select :trip_destination_id, Place.all.collect { |p| [p.name, p.id] }, {} , class: 'form-control'
   .actions
-    = form.submit
+    = form.submit "Create", class: 'btn btn-lg btn-primary btn-block'

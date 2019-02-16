@@ -1,13 +1,13 @@
 %p#notice= notice
 %p
   %strong Driver:
-  = @pickup.driver
+  = @pickup.passenger.name
 %p
   %strong Source:
-  = @pickup.source
+  = @pickup.source.name
 %p
   %strong Destination:
-  = @pickup.destination
+  = @pickup.destination.name
 %p
   %strong Departure time:
   = @pickup.departure_time

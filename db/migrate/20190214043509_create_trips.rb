@@ -3,11 +3,11 @@
 class CreateTrips < ActiveRecord::Migration[5.2]
   def change
     create_table :trips do |t|
-      t.references :driver
-      t.references :trip_source
-      t.references :trip_destination
-      t.datetime :departure_time
-      t.integer :number_of_seats
+      t.references :driver, null: false
+      t.references :trip_source, null: false
+      t.references :trip_destination, null: false
+      t.datetime :departure_time, null: false
+      t.integer :number_of_seats, null: false, default: 3
 
       t.timestamps
     end

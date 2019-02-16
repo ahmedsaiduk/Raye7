@@ -2,7 +2,7 @@
 
 # picup plicy
 class PickupPolicy < ApplicationPolicy
-  def show_nav?
+  def general?
     user.passenger?
   end
 end

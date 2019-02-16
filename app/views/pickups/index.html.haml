@@ -1,22 +1,26 @@
 %p#notice= notice
-%h1 Pickups
-%table
-  %thead
-    %tr
-      %th Driver
-      %th Source
-      %th Destination
-      %th Departure time
-      %th{:colspan => "3"}
-  %tbody
-    - @pickups.each do |pickup|
+.well.well-lg
+  .row
+    %h3.col-lg-8 Pickups
+    %div.col-lg-2
+    = link_to 'New pickup', new_pickup_path, class: "btn btn-success btn-lg active col-lg-2"
+
+.container-fluid
+  %table.table.table-hover
+    %thead
       %tr
-        %td= pickup.driver
-        %td= pickup.source
-        %td= pickup.destination
-        %td= pickup.departure_time
-        %td= link_to 'Show', pickup
-        %td= link_to 'Edit', edit_pickup_path(pickup)
-        %td= link_to 'Destroy', pickup, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Pickup', new_pickup_path
+        %th Passenger
+        %th Source
+        %th Destination
+        %th Departure time
+        %th{:colspan => "3"}
+    %tbody
+      - @pickups.each do |pickup|
+        %tr
+          %td= pickup.passenger.name
+          %td= pickup.source.name
+          %td= pickup.destination.name
+          %td= pickup.departure_time
+          %td= link_to 'Show', pickup
+          %td= link_to 'Edit', edit_pickup_path(pickup)
+          %td= link_to 'Destroy', pickup, method: :delete, data: { confirm: 'Are you sure?' }

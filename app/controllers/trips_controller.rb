@@ -2,6 +2,7 @@
 
 class TripsController < ApplicationController
   before_action :set_trip, only: %i[show edit update destroy]
+  before_action :check_authority
 
   # GET /trips
   # GET /trips.json
@@ -63,6 +64,10 @@ class TripsController < ApplicationController
 
   private
 
+  def check_authority
+    authorize Trip, :general?
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_trip
     @trip = Trip.find(params[:id])
@@ -74,7 +79,8 @@ class TripsController < ApplicationController
       :driver_id,
       :departure_time,
       :number_of_seats,
-      trip_source_and_destination_attributes: %i[is_source place_id trip_id]
+      :trip_source_id,
+      :trip_destination_id
     )
   end
 end

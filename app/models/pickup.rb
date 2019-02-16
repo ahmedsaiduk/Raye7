@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: pickups
@@ -25,7 +26,9 @@
 #
 
 class Pickup < ApplicationRecord
-  belongs_to :passenger, class_name: 'Users'
+  belongs_to :passenger, class_name: 'User'
   belongs_to :source, class_name: 'Place', foreign_key: 'pickup_source_id'
   belongs_to :destination, class_name: 'Place', foreign_key: 'pickup_destination_id'
+  # validations
+  validates :departure_time, :passenger_id, :pickup_destination_id, :pickup_source_id, presence: true
 end

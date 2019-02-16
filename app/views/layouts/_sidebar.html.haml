@@ -2,14 +2,14 @@
   .sidebar-header
     %h3 Raye7
   %ul.list-unstyled.components
-    -if policy(Trip).show_nav?
+    -if policy(Trip).general?
       %li
         %a{:href => "/trips"}
           %span
             %i.fa.fa-plane-departure
           %span
             Trips
-    -if policy(Pickup).show_nav?
+    -if policy(Pickup).general?
       %li
         %a{:href => "/pickups"}
           %span

@@ -1,6 +1,6 @@
 = form_with(model: pickup, local: true) do |form|
   - if pickup.errors.any?
-    #error_explanation
+    #error_explanation.flash-container.alert.alert-danger
       %h2
         = pluralize(pickup.errors.count, "error")
         prohibited this pickup from being saved:
@@ -8,16 +8,16 @@
         - pickup.errors.full_messages.each do |message|
           %li= message
   .field
-    = form.label :driver_id
-    = form.text_field :driver_id
+    = form.label :passenger_id
+    = form.select :passenger_id, User.passenger.collect { |p| [p.name, p.id] }, {} , class: 'form-control'
   .field
-    = form.label :source_id
-    = form.text_field :source_id
+    = form.label :pickup_source_id
+    = form.select :pickup_source_id, Place.all.collect { |p| [p.name, p.id] }, {} , class: 'form-control'
   .field
-    = form.label :destination_id
-    = form.text_field :destination_id
+    = form.label :pickup_destination_id
+    = form.select :pickup_destination_id, Place.all.collect { |p| [p.name, p.id] }, {} , class: 'form-control'
   .field
     = form.label :departure_time
     = form.datetime_select :departure_time
   .actions
-    = form.submit
+    = form.submit "Create", class: 'btn btn-lg btn-primary btn-block'
