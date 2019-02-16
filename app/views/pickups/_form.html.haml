@@ -1,0 +1,23 @@
+= form_with(model: pickup, local: true) do |form|
+  - if pickup.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(pickup.errors.count, "error")
+        prohibited this pickup from being saved:
+      %ul
+        - pickup.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :driver_id
+    = form.text_field :driver_id
+  .field
+    = form.label :source_id
+    = form.text_field :source_id
+  .field
+    = form.label :destination_id
+    = form.text_field :destination_id
+  .field
+    = form.label :departure_time
+    = form.datetime_select :departure_time
+  .actions
+    = form.submit

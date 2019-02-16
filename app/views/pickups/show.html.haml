@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Driver:
+  = @pickup.driver
+%p
+  %strong Source:
+  = @pickup.source
+%p
+  %strong Destination:
+  = @pickup.destination
+%p
+  %strong Departure time:
+  = @pickup.departure_time
+= link_to 'Edit', edit_pickup_path(@pickup)
+|
+= link_to 'Back', pickups_path

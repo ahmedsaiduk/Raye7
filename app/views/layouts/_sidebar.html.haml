@@ -2,26 +2,22 @@
   .sidebar-header
     %h3 Raye7
   %ul.list-unstyled.components
+    -if policy(Trip).show_nav?
+      %li
+        %a{:href => "/trips"}
+          %span
+            %i.fa.fa-plane-departure
+          %span
+            Trips
+    -if policy(Pickup).show_nav?
+      %li
+        %a{:href => "/pickups"}
+          %span
+            %i.fa.fa-map-marker-alt
+          %span
+            Pickup Locations
     %li
-      %a{:href => "#"}
-        %span
-          %i.far.fa-user
-        %span
-          Users
-    %li
-      %a{:href => "#"}
-        %span
-          %i.fa.fa-plane-departure
-        %span
-          Trips
-    %li
-      %a{:href => "#"}
-        %span
-          %i.fa.fa-map-marker-alt
-        %span
-          Pickup Locations
-    %li
-      %a{:href => "#"}
+      %a{:href => "/places"}
         %span
           %i.fa.fa-map-marked-alt
         %span

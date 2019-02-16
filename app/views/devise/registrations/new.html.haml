@@ -2,6 +2,18 @@
   = render "devise/shared/error_messages", resource: resource
   %h1.h3.mb-3.font-weight-normal Sign up
   .field
+    = f.label :name, class: 'sr-only'
+    %br/
+    = f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control', placeholder: 'Full Name'
+  .field
+    = f.label :phone, class: 'sr-only'
+    %br/
+    = f.text_field :phone, autofocus: true, autocomplete: "phone", class: 'form-control', placeholder: 'Phone Number'
+  .field
+    = f.label :role, class: 'sr-only'
+    %br/
+    = f.select :role, User.roles.map { |k,v| [ k, k ] }, {} ,class: 'form-control'
+  .field
     = f.label :email, class: 'sr-only'
     %br/
     = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'Email'

@@ -1,0 +1,27 @@
+= form_with(model: trip, local: true) do |form|
+  - if trip.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(trip.errors.count, "error")
+        prohibited this trip from being saved:
+      %ul
+        - trip.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :driver_id
+    = form.text_field :driver_id
+  .field
+    = form.label :departure_time
+    = form.datetime_select :departure_time
+  .field
+    = form.label :number_of_seats
+    = form.number_field :number_of_seats
+  = form.fields_for :trip_source_and_destinations do |t_fields|
+    Place : #{t_fields.text_field :place_id}
+    Trip : #{t_fields.text_field :trip_id}
+  = form.fields_for :trip_source_and_destinations do |t_fields|
+    Place : #{t_fields.text_field :place_id}
+    Trip : #{t_fields.text_field :trip_id}
+
+  .actions
+    = form.submit
